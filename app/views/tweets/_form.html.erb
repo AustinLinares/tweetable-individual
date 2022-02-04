@@ -1,13 +1,13 @@
-<div data-turbo="false">
-  <%= form_with(url: "/tweets") do |f| %> 
-    <%= errors_for(tweet, :body) %>
-    <div>
-      <div>
-        <%= f.text_area :body, autofocus: true %>
-        <%= f.submit "Tweet"%>
-      </div>
-    </div>
-  <% end %>
+<p style="color: green"><%= notice %></p>
+<%= form_with(model: tweet, method: :post) do |f| %> 
+
+<div >
+  <div >
+    <%= f.text_area :body, placeholder: "Remember to thing before write...",
+    autofocus: true %>
+      <%= f.submit "Tweet" %>
+  </div>
+
 </div>
 
-
+<% end %>
