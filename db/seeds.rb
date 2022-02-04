@@ -39,15 +39,14 @@ users.each do |user|
   end
 end
 
-# puts "Seeding Comments"
-
-# tweets = Tweet.all
-# tweets.each do |tweet|
-#   rand(3..4).times
-#     new_comment = Comment.new
-#     new_comment.tweet = tweet
-#     new_comment.user = User.all.sample
-#     new_comment.body = Faker::Lorem.sentence(word_count: rand(3..6))
-#     puts "Comment not created. Errors: #{new_comment.errors.full_messages}" unless new_comment.save
-#   end
-# end
+puts "Seeding Comments"
+tweets = Tweet.all
+tweets.each do |tweet|
+  rand(3..4).times do
+    new_comment = Comment.new
+    new_comment.tweet_id = tweet.id
+    new_comment.user_id = User.all.sample.id
+    new_comment.body = Faker::Lorem.sentence(word_count: rand(3..6))
+    puts "Comment not created. Errors: #{new_comment.errors.full_messages}" unless new_comment.save
+  end
+end
