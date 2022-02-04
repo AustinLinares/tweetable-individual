@@ -1,9 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Home</h1>
+<header class="header">
+  <h1 class="heading">Home</h1>
+</header>
+
+<%= render "form", tweet: @new_tweet %>
+
+
+
+
+
+
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
+  
     <%= image_tag(tweet.user.avatar) if tweet.user.avatar.attached? %>
     <%= tweet.user.name %>
     <%= tweet.user.username %>
@@ -12,12 +23,21 @@
       <%= tweet.body %>
     </div>
     <div>
+    <div>
       <%= link_to tweet_path(tweet) do %>
         <%= image_tag "comment-icon.svg"%>
       <% end %>
       <%= tweet.comments_counter %>
     </div>
+    <div>
+      <%= button_to tweet_path(tweet), method: :delete, data: { turbo: "false" } do %>
+        <%= image_tag "delete-icon.svg"%>
+      <% end %>
+      <%= link_to edit_tweet_path(tweet) do %>
+        <%= image_tag "edit-icon.svg"%>
+      <% end %>
+    </div>
+    </div>
+    
   <% end %>
 </div>
-
-<%= link_to "New tweet", new_tweet_path %>

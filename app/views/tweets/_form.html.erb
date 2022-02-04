@@ -1,32 +1,13 @@
-<%= form_with(model: tweet) do |form| %>
-  <% if tweet.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(tweet.errors.count, "error") %> prohibited this tweet from being saved:</h2>
+<p style="color: green"><%= notice %></p>
+<%= form_with(model: tweet, method: :post) do |f| %> 
 
-      <ul>
-        <% tweet.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
+<div >
+  <div >
+    <%= f.text_area :body, placeholder: "Remember to thing before write...",
+    autofocus: true %>
+      <%= f.submit "Tweet" %>
   </div>
 
-  <div>
-    <%= form.label :comments_counter, style: "display: block" %>
-    <%= form.number_field :comments_counter %>
-  </div>
+</div>
 
-  <div>
-    <%= form.label :user_id, style: "display: block" %>
-    <%= form.text_field :user_id %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>
