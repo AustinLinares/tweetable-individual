@@ -1,10 +1,54 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @tweet %>
+<div>
+  <%= image_tag(@tweet.user.avatar) if @tweet.user.avatar.attached? %>
+  <%= @tweet.user.name %>
+  <%= @tweet.user.username %>
+  <%= time_ago_in_words(@tweet.updated_at) %>
+  <div>
+    <%= @tweet.body %>
+  </div>
+  <div>
+    <div>
+      <%= link_to tweet_path(@tweet) do %>
+        <%= image_tag "comment-icon.svg"%>
+      <% end %>
+      <%= @tweet.comments_counter %>
+    </div>
+    <div>
+      <%= button_to tweet_path(@tweet), method: :delete, data: { turbo: "false" } do %>
+        <%= image_tag "delete-icon.svg"%>
+      <% end %>
+      <%= link_to edit_tweet_path(@tweet) do %>
+        <%= image_tag "edit-icon.svg"%>
+      <% end %>
+    </div>
+  </div>
+</div>
+
+<%= render "create-comment", tweet: @tweet, comment: @new_comment %>
+
 
 <div>
-  <%= link_to "Edit this tweet", edit_tweet_path(@tweet) %> |
-  <%= link_to "Back to tweets", tweets_path %>
-
-  <%= button_to "Destroy this tweet", @tweet, method: :delete %>
+  <% @tweet.comments.each do |comment| %>
+  <div>
+    <%= image_tag(comment.user.avatar) if comment.user.avatar.attached? %>
+    <%= comment.user.name  %>
+    <%= comment.user.username  %>
+    <%= time_ago_in_words(comment.created_at) %>
+    <div>
+      <%= comment.body %>
+    </div>
+    <div>
+      <%= button_to tweet_comment_path(@tweet, comment), method: :delete, data: { turbo: "false" } do %>
+        <%= image_tag "delete-icon.svg"%>
+      <% end %>
+      <%= link_to edit_tweet_comment_path(@tweet, comment) do %>
+        <%= image_tag "edit-icon.svg"%>
+      <% end %>
+    </div>
+    
+  </div>
+  
+  <% end %>
 </div>

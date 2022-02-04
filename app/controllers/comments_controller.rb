@@ -1,5 +1,5 @@
 class CommentsController < ApplicationController
-  before_action :set_comment, only: %i[ show edit update destroy ]
+  before_action :set_comment, only: %i[show edit update destroy]
 
   # GET /comments
   def index
@@ -7,8 +7,7 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1
-  def show
-  end
+  def show; end
 
   # GET /comments/new
   def new
@@ -16,24 +15,25 @@ class CommentsController < ApplicationController
   end
 
   # GET /comments/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /comments
   def create
     @comment = Comment.new(comment_params)
+    @comment.user_id = current_user.id
+    @comment.tweet_id = params["tweet_id"]
 
     if @comment.save
-      redirect_to @comment, notice: "Comment was successfully created."
+      redirect_to tweet_path(params["tweet_id"]), notice: "Comment was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      redirect_to tweet_path(params["tweet_id"]), status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /comments/1
   def update
     if @comment.update(comment_params)
-      redirect_to @comment, notice: "Comment was successfully updated."
+      redirect_to tweet_path(@comment.tweet.id), notice: "Comment was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end
@@ -42,17 +42,18 @@ class CommentsController < ApplicationController
   # DELETE /comments/1
   def destroy
     @comment.destroy
-    redirect_to comments_url, notice: "Comment was successfully destroyed."
+    redirect_to tweet_path(@comment.tweet.id), notice: "Comment was successfully destroyed."
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_comment
-      @comment = Comment.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def comment_params
-      params.require(:comment).permit(:user_id, :tweet_id, :body)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_comment
+    @comment = Comment.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def comment_params
+    params.require(:comment).permit(:body)
+  end
 end
