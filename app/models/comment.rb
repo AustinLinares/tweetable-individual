@@ -3,5 +3,5 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :tweet, counter_cache: true
   # Validations
-  validates :body, presence: true, length: { minimun: 140 }
+  validates :body, presence: true, length: { maximum: 140 }
 end
