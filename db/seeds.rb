@@ -17,7 +17,7 @@ puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.sav
 
 
 puts "Seeding users"
-6.times do |user|
+4.times do |user|
   character = Faker::Books::TheKingkillerChronicle.character
   user = User.new
   user.username = "@#{character}"
@@ -39,14 +39,15 @@ users.each do |user|
   end
 end
 
-puts "Seeding Comments"
+# puts "Seeding Comments"
 
-tweets = Tweet.all
-tweets.each do |tweet|
-  rand(3..4).times
-    new_comment = Comment.new
-    new_comment.tweet = tweet
-    new_comment.user = User.all.sample
-    new_comment.body = Faker::Lorem.sentence(word_count: rand(3..6))
-  end
-end
+# tweets = Tweet.all
+# tweets.each do |tweet|
+#   rand(3..4).times
+#     new_comment = Comment.new
+#     new_comment.tweet = tweet
+#     new_comment.user = User.all.sample
+#     new_comment.body = Faker::Lorem.sentence(word_count: rand(3..6))
+#     puts "Comment not created. Errors: #{new_comment.errors.full_messages}" unless new_comment.save
+#   end
+# end
