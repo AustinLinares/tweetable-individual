@@ -26,18 +26,7 @@
   </div>
 </div>
 
-<div data-turbo="false">
-  <%= form_with(model: [@tweet, @new_comment]) do |form| %>
-    <div>
-
-      <%= form.text_area :body %>
-    </div>
-
-    <div>
-      <%= form.submit %>
-    </div>
-  <% end %>
-</div>
+<%= render "create-comment", tweet: @tweet, comment: @new_comment %>
 
 
 <div>
