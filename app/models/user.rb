@@ -16,5 +16,5 @@ class User < ApplicationRecord
   validates :email,
             format: { with: /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/,
                       message: "must have an email format" }
-  validates :encrypted_password, length: { minimun: 6 }
+  validates :encrypted_password, length: { minimum: 6 }
 end
