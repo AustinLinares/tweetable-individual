@@ -1,13 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Tweets</h1>
+<h1>Home</h1>
 
 <div id="tweets">
   <% @tweets.each do |tweet| %>
-    <%= render tweet %>
-    <p>
-      <%= link_to "Show this tweet", tweet %>
-    </p>
+    <%= image_tag(tweet.user.avatar) if tweet.user.avatar.attached? %>
+    <%= tweet.user.name %>
+    <%= tweet.user.username %>
+    <%= time_ago_in_words(tweet.updated_at) %>
+    <div>
+      <%= tweet.body %>
+    </div>
+    <div>
+      <%= link_to tweet_path(tweet) do %>
+        <%= image_tag "comment-icon.svg"%>
+      <% end %>
+      <%= tweet.comments_counter %>
+    </div>
   <% end %>
 </div>
 
