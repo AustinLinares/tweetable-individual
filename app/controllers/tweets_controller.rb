@@ -24,9 +24,9 @@ class TweetsController < ApplicationController
     @tweet.body = params["body"]
     @tweet.user = current_user
     if @tweet.save
-      redirect_to root_path, notice: "Tweet created", status: :created
+      redirect_to tweets_path, notice: "Tweet created"
     else
-      render root_path, notice: "Tweet could not be created", status: :unprocessable_entity
+      render tweets_path, notice: "Tweet could not be created", status: :unprocessable_entity
     end
   end
 

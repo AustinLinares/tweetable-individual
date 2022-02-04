@@ -2,7 +2,7 @@
 <%= form_with(model: tweet, method: :post) do |f| %> 
 
 <div >
-  <div >
+  <div data-turbo="false">
     <%= f.text_area :body, placeholder: "Remember to thing before write...",
     autofocus: true %>
       <%= f.submit "Tweet" %>
