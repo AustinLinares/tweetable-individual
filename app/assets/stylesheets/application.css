@@ -9,7 +9,8 @@ p {
 }
 
 .edit-profile-link,
-.login-profile-link {
+.login-profile-link,
+.signup-profile-link {
   color: #1da1f2;
   text-decoration: none;
 }
@@ -55,7 +56,8 @@ p {
 }
 
 .tweet-form__container,
-.comment-form__container {
+.comment-form__container,
+.form__container {
   max-width: 600px;
 }
 
@@ -118,7 +120,8 @@ p {
 }
 
 .tweet-button,
-.comment-button {
+.comment-button,
+.submit-button {
   background-color: #1da1f2;
   border-radius: 100px;
   color: #fff;
@@ -127,8 +130,31 @@ p {
   border: none;
 }
 
+.center-button {
+  text-align: center;
+}
+
+.center-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem 0;
+}
+
+.mv-1 {
+  padding: 0.5rem 0;
+}
+
 .comment-button {
   width: 103px;
+}
+
+.input {
+  width: 260px;
+  min-height: 40px;
+  border: 1px solid #5b7083;
+  border-radius: 8px;
 }
 
 @media screen and (max-width: 1020px) {
