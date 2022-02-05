@@ -121,7 +121,8 @@ p {
 
 .tweet-button,
 .comment-button,
-.submit-button {
+.submit-button,
+.signup-button {
   background-color: #1da1f2;
   border-radius: 100px;
   color: #fff;
