@@ -8,6 +8,12 @@ p {
   margin: 0;
 }
 
+.cancel-account {
+  background-color: #fff;
+  color: #1da1f2;
+  border: none;
+}
+
 .edit-profile-link,
 .login-profile-link,
 .signup-profile-link {

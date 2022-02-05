@@ -18,13 +18,13 @@ puts "Admin not created. Errors: #{admin.errors.full_messages}" unless admin.sav
 
 puts "Seeding users"
 4.times do |user|
-  character = Faker::Books::TheKingkillerChronicle.character
+  character = Faker::Books::TheKingkillerChronicle.unique.character
   user = User.new
   user.username = "@#{character}"
   user.name = character
   user.email = "#{character}@mail.com"
   user.password = "letmein"
-  user.avatar.attach(io: URI.open(Faker::Avatar.image(slug: "my-own-slug", size: "50x50")), filename: "#{character}-image.jpg")
+  user.avatar.attach(io: URI.open(Faker::Avatar.unique.image(size: "50x50")), filename: "#{character}-image.jpg")
   puts "User not created. Errors: #{user.errors.full_messages}" unless user.save
 end
 
