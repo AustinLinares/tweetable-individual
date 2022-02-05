@@ -21,7 +21,11 @@
   <% @tweets.each do |tweet| %>
   <div class="tweet-container">
     <figure class="tweet-avatar__container">
-      <%= image_tag tweet.user.avatar, class:"tweet-avatar" if tweet.user.avatar.attached? %>
+      <% if tweet.user.avatar.attached? %>
+        <%= image_tag tweet.user.avatar, class:"tweet-avatar" %>
+      <% else %>
+        <%= image_tag "default-avatar.jpg", class:"tweet-avatar" %>
+      <% end %>
     </figure>
     <div class="tweet-content">
       <div class="tweet-header">

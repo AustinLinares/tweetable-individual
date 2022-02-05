@@ -15,7 +15,11 @@
 
 <div class="tweet-container">
   <figure class="tweet-avatar__container">
-    <%= image_tag(@tweet.user.avatar) if @tweet.user.avatar.attached? %>
+    <% if @tweet.user.avatar.attached? %>
+      <%= image_tag @tweet.user.avatar, class:"tweet-avatar"  %>
+    <% else %>
+      <%= image_tag "default-avatar.jpg", class:"tweet-avatar"%>
+    <% end %>
   </figure>
   <div class="tweet-content">
     <div class="tweet-header">
@@ -56,7 +60,11 @@
   <% @tweet.comments.each do |comment| %>
     <div class="comment-container">
       <figure class="comment-avatar__container">
-        <%= image_tag comment.user.avatar, class:"comment-avatar" if comment.user.avatar.attached? %>
+        <% if comment.user.avatar.attached? %>
+          <%= image_tag comment.user.avatar, class:"comment-avatar"  %>
+        <% else %>
+          <%= image_tag "default-avatar.jpg", class:"comment-avatar"%>
+        <% end %>
       </figure>
       <div class="comment-content">
         <div class="comment-header">
