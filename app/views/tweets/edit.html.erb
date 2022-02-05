@@ -1,13 +1,19 @@
-<h1>Editing tweet</h1>
+<header class="header">
+  <h1 class="heading">Edit Tweet</h1>
+</header>
+
+<section class="form__container center-form">
 <%= form_with(model: @tweet, method: :patch) do |f| %> 
 
-<div >
-  <div >
+  <div>
+    <%= f.label :body%><br />
     <%= f.text_area :body, placeholder: "Remember to thing before write...",
-    autofocus: true %>
-      <%= f.submit "Edit" %>
+    autofocus: true, class:"input" %><br>
+    <div class="center-button">
+      <%= f.submit "Edit", class:"edit-tw-comm-button" %>
+    </div>
+      
   </div>
 
-</div>
-
 <% end %>
+</section>

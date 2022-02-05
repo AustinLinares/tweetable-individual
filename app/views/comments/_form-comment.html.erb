@@ -1,22 +1,24 @@
-<%= form_with(model: [Tweet.find(comment.tweet.id), comment]) do |form| %>
-  <% if comment.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+<section class="form__container center-form">
+  <%= form_with(model: [Tweet.find(comment.tweet.id), comment]) do |form| %>
+    <% if comment.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
 
-      <ul>
-        <% comment.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% comment.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div>
+      <%= form.label :body, style: "display: block" %>
+      <%= form.text_area :body, class:"input" %>
+    </div>
+
+    <div class="center-button">
+      <%= form.submit "Edit", class:"edit-tw-comm-button" %>
     </div>
   <% end %>
-
-  <div>
-    <%= form.label :body, style: "display: block" %>
-    <%= form.text_area :body %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>
+</section>
