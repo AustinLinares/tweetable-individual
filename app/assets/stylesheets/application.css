@@ -1,5 +1,24 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,200&family=Raleway:wght@300&family=Roboto:ital,wght@0,100;0,300;1,100;1,300&display=swap");
+
+* {
+  font-family: Roboto;
+}
+
 p {
   margin: 0;
+}
+
+.edit-profile-link,
+.login-profile-link {
+  color: #1da1f2;
+  text-decoration: none;
+}
+
+.delete-profile-link {
+  color: #1da1f2;
+  background-color: #fff;
+  border-radius: 100px;
+  border: 1px solid #1da1f2;
 }
 
 .body {
@@ -35,10 +54,13 @@ p {
   width: 100%;
 }
 
-.tweet-form__container {
+.tweet-form__container,
+.comment-form__container {
   max-width: 600px;
 }
-.tweet-form {
+
+.tweet-form,
+.comment-form {
   width: 100%;
   min-height: 37px;
 }

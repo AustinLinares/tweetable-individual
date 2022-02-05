@@ -2,10 +2,10 @@
 
 <nav class="nav-bar">
   <% if user_signed_in? %>
-    <%= link_to "Edit Profile", edit_user_registration_path%>
-    <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" } %>
+    <%= link_to "Edit Profile", edit_user_registration_path, class:"edit-profile-link"%>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" }, class:"delete-profile-link" %>
   <% else %>
-    <%= link_to "Log in", new_user_session_path %>
+    <%= link_to "Log in", new_user_session_path, class:"login-profile-link" %>
   <% end %>
 </nav>
 
