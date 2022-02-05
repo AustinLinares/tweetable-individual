@@ -53,8 +53,9 @@
   </div>
 </div>
 
-<%= render "create-comment", tweet: @tweet, comment: @new_comment %>
-
+<%if user_signed_in? %>
+  <%= render "create-comment", tweet: @tweet, comment: @new_comment %>
+<%end%>
 
 <div class="comments">
   <% @tweet.comments.each do |comment| %>
