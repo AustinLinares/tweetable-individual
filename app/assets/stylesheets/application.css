@@ -116,13 +116,16 @@ p {
 .tweet-avatar__container,
 .comment-avatar__container {
   margin: 0;
-  max-width: 50px;
-  max-height: 50px;
+  /* max-width: 50px;
+  max-height: 50px; */
 }
 
 .tweet-avatar,
 .comment-avatar {
   padding-right: 0.5rem;
+  max-width: 50px;
+  max-height: 50px;
+  border-radius: 50%;
 }
 
 .tweet-button,
