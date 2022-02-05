@@ -1,6 +1,16 @@
 <p style="color: green"><%= notice %></p>
+<nav class="nav-bar">
+  <% if user_signed_in? %>
+    <%= link_to "Edit Profile", edit_user_registration_path%>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" } %>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path %>
+  <% end %>
+</nav>
 
 <header class="header">
+
+
   <h1 class="heading">Home</h1>
 </header>
 <%if user_signed_in? %>
@@ -19,7 +29,9 @@
         <%= time_ago_in_words(tweet.updated_at) %>
       </div>
       <div class="tweet-body">
-        <%= tweet.body %>
+        <p>
+          <%= tweet.body %>
+        </p>
       </div>
       <div class="tweet-crud">
         <div>

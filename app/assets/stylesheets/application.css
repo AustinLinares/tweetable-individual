@@ -18,7 +18,15 @@
   line-height: 32px;
 }
 
+.nav-bar {
+  max-width: 600px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
+}
+
 .tweets {
+  margin-top: 0.75rem;
   width: 100%;
 }
 
@@ -34,6 +42,7 @@
   display: flex;
   padding-bottom: 0.5rem;
   border: 1px solid #ebeef0;
+  max-width: 600px;
 }
 
 .tweet-content {
