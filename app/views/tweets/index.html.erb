@@ -3,35 +3,46 @@
 <header class="header">
   <h1 class="heading">Home</h1>
 </header>
-
-<%= render "form", tweet: @new_tweet %>
-
-<div id="tweets">
+<%if user_signed_in? %>
+  <%= render "form", tweet: @new_tweet %>
+<%end%>
+<div class="tweets">
   <% @tweets.each do |tweet| %>
-  
-    <%= image_tag(tweet.user.avatar) if tweet.user.avatar.attached? %>
-    <%= tweet.user.name %>
-    <%= tweet.user.username %>
-    <%= time_ago_in_words(tweet.updated_at) %>
-    <div>
-      <%= tweet.body %>
+  <div class="tweet-container">
+    <figure class="tweet-avatar__container">
+      <%= image_tag tweet.user.avatar, class:"tweet-avatar" if tweet.user.avatar.attached? %>
+    </figure>
+    <div class="tweet-content">
+      <div class="tweet-header">
+        <%= tweet.user.name %>
+        <%= tweet.user.username %>
+        <%= time_ago_in_words(tweet.updated_at) %>
+      </div>
+      <div class="tweet-body">
+        <%= tweet.body %>
+      </div>
+      <div class="tweet-crud">
+        <div>
+          <%= link_to tweet_path(tweet) do %>
+            <%= image_tag "comment-icon.svg"%>
+          <% end %>
+          <%= tweet.comments_counter %>
+        </div>
+        <%if user_signed_in? && current_user.id == tweet.user.id %>
+          <div class="tweet-crud__del-upd">
+            <%= button_to tweet_path(tweet), method: :delete, data: { turbo: "false" } do %>
+              <%= image_tag "delete-icon.svg"%>
+            <% end %>
+            <%= link_to edit_tweet_path(tweet) do %>
+              <%= image_tag "edit-icon.svg"%>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
     </div>
-    <div>
-    <div>
-      <%= link_to tweet_path(tweet) do %>
-        <%= image_tag "comment-icon.svg"%>
-      <% end %>
-      <%= tweet.comments_counter %>
-    </div>
-    <div>
-      <%= button_to tweet_path(tweet), method: :delete, data: { turbo: "false" } do %>
-        <%= image_tag "delete-icon.svg"%>
-      <% end %>
-      <%= link_to edit_tweet_path(tweet) do %>
-        <%= image_tag "edit-icon.svg"%>
-      <% end %>
-    </div>
-    </div>
+    
+  </div>
+    
     
   <% end %>
 </div>

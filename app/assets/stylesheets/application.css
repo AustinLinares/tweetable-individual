@@ -17,3 +17,82 @@
   font-size: 20px;
   line-height: 32px;
 }
+
+.tweets {
+  width: 100%;
+}
+
+.tweet-form__container {
+  max-width: 600px;
+}
+.tweet-form {
+  width: 100%;
+  min-height: 37px;
+}
+
+.tweet-container {
+  display: flex;
+  padding-bottom: 0.5rem;
+  border: 1px solid #ebeef0;
+}
+
+.tweet-content {
+  display: flex;
+  flex-direction: column;
+  max-width: 100%;
+}
+
+.tweet-header {
+}
+
+.tweet-body {
+  width: 540px;
+  padding-bottom: 0.5rem;
+}
+
+.tweet-crud {
+  display: flex;
+  justify-content: space-between;
+}
+
+.tweet-crud__del-upd {
+  display: flex;
+}
+
+.tweet-avatar__container {
+  margin: 0;
+  max-width: 50px;
+  max-height: 50px;
+}
+
+.tweet-avatar {
+  padding-right: 0.5rem;
+}
+
+.tweet-button {
+  background-color: #1da1f2;
+  border-radius: 100px;
+  color: #fff;
+  width: 76px;
+  height: 40px;
+  border: none;
+}
+
+@media screen and (max-width: 1020px) {
+  .tweet-body {
+    max-width: 450px;
+  }
+}
+@media screen and (max-width: 1020px) {
+  .body {
+    padding: 0 15%;
+  }
+}
+@media screen and (max-width: 570px) {
+  .body {
+    padding: 0 5%;
+  }
+  .tweet-body {
+    max-width: 300px;
+  }
+}
