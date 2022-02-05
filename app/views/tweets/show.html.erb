@@ -1,26 +1,49 @@
 <p style="color: green"><%= notice %></p>
 
-<div>
-  <%= image_tag(@tweet.user.avatar) if @tweet.user.avatar.attached? %>
-  <%= @tweet.user.name %>
-  <%= @tweet.user.username %>
-  <%= time_ago_in_words(@tweet.updated_at) %>
-  <div>
-    <%= @tweet.body %>
-  </div>
-  <div>
-    <div>
-      <%= link_to tweet_path(@tweet) do %>
-        <%= image_tag "comment-icon.svg"%>
-      <% end %>
-      <%= @tweet.comments_counter %>
+<nav class="nav-bar">
+  <% if user_signed_in? %>
+    <%= link_to "Edit Profile", edit_user_registration_path%>
+    <%= button_to "Log out", destroy_user_session_path, method: :delete, data: { turbo: "false" } %>
+  <% else %>
+    <%= link_to "Log in", new_user_session_path %>
+  <% end %>
+</nav>
+
+<header class="header">
+  <h1 class="heading">Tweet Details</h1>
+</header>
+
+<div class="tweet-container">
+  <figure class="tweet-avatar__container">
+    <%= image_tag(@tweet.user.avatar) if @tweet.user.avatar.attached? %>
+  </figure>
+  <div class="tweet-content">
+    <div class="tweet-header">
+      <%= @tweet.user.name %>
+      <%= @tweet.user.username %>
+      <%= time_ago_in_words(@tweet.updated_at) %>
     </div>
-    <div>
-      <%= button_to tweet_path(@tweet), method: :delete, data: { turbo: "false" } do %>
-        <%= image_tag "delete-icon.svg"%>
-      <% end %>
-      <%= link_to edit_tweet_path(@tweet) do %>
-        <%= image_tag "edit-icon.svg"%>
+    <div class="tweet-body">
+      <p class="tweet-body-p">
+        <%= @tweet.body %>
+      </p>
+    </div>
+    <div class="tweet-crud">
+      <div>
+        <%= link_to tweet_path(@tweet) do %>
+          <%= image_tag "comment-icon.svg"%>
+        <% end %>
+        <%= @tweet.comments_counter %>
+      </div>
+      <%if user_signed_in? && current_user.id == @tweet.user.id %>
+        <div class="tweet-crud__del-upd">
+          <%= button_to tweet_path(@tweet), method: :delete, data: { turbo: "false" } do %>
+            <%= image_tag "delete-icon.svg"%>
+          <% end %>
+          <%= link_to edit_tweet_path(@tweet) do %>
+            <%= image_tag "edit-icon.svg"%>
+          <% end %>
+        </div>
       <% end %>
     </div>
   </div>
@@ -29,26 +52,36 @@
 <%= render "create-comment", tweet: @tweet, comment: @new_comment %>
 
 
-<div>
+<div class="comments">
   <% @tweet.comments.each do |comment| %>
-  <div>
-    <%= image_tag(comment.user.avatar) if comment.user.avatar.attached? %>
-    <%= comment.user.name  %>
-    <%= comment.user.username  %>
-    <%= time_ago_in_words(comment.created_at) %>
-    <div>
-      <%= comment.body %>
+    <div class="comment-container">
+      <figure class="comment-avatar__container">
+        <%= image_tag comment.user.avatar, class:"comment-avatar" if comment.user.avatar.attached? %>
+      </figure>
+      <div class="comment-content">
+        <div class="comment-header">
+          <%= comment.user.name  %>
+          <%= comment.user.username  %>
+          <%= time_ago_in_words(comment.created_at) %>
+        </div>
+        <div class="comment-body">
+          <p>
+        <%= comment.body %>
+          </p>
+        </div>
+        <div class="comment-crud">
+          <%if user_signed_in? && current_user.id == comment.user.id %>
+            <div class="comment-crud__del-upd">
+              <%= button_to tweet_comment_path(@tweet, comment), method: :delete, data: { turbo: "false" } do %>
+                <%= image_tag "delete-icon.svg"%>
+              <% end %>
+              <%= link_to edit_tweet_comment_path(@tweet, comment) do %>
+                <%= image_tag "edit-icon.svg"%>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
     </div>
-    <div>
-      <%= button_to tweet_comment_path(@tweet, comment), method: :delete, data: { turbo: "false" } do %>
-        <%= image_tag "delete-icon.svg"%>
-      <% end %>
-      <%= link_to edit_tweet_comment_path(@tweet, comment) do %>
-        <%= image_tag "edit-icon.svg"%>
-      <% end %>
-    </div>
-    
-  </div>
-  
   <% end %>
 </div>

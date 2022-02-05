@@ -1,3 +1,7 @@
+p {
+  margin: 0;
+}
+
 .body {
   padding: 0 20%;
 }
@@ -25,7 +29,8 @@
   gap: 24px;
 }
 
-.tweets {
+.tweets,
+.comments {
   margin-top: 0.75rem;
   width: 100%;
 }
@@ -38,23 +43,27 @@
   min-height: 37px;
 }
 
-.tweet-container {
+.tweet-container,
+.comment-container {
   display: flex;
   padding-bottom: 0.5rem;
   border: 1px solid #ebeef0;
   max-width: 600px;
 }
 
-.tweet-content {
+.tweet-content,
+.comment-content {
   display: flex;
   flex-direction: column;
   max-width: 100%;
 }
 
-.tweet-header {
+.tweet-header,
+.comment-header {
 }
 
-.tweet-body {
+.tweet-body,
+.comment-body {
   width: 540px;
   padding-bottom: 0.5rem;
 }
@@ -64,17 +73,25 @@
   justify-content: space-between;
 }
 
-.tweet-crud__del-upd {
+.comment-crud {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.tweet-crud__del-upd,
+.comment-crud__del-upd {
   display: flex;
 }
 
-.tweet-avatar__container {
+.tweet-avatar__container,
+.comment-avatar__container {
   margin: 0;
   max-width: 50px;
   max-height: 50px;
 }
 
-.tweet-avatar {
+.tweet-avatar,
+.comment-avatar {
   padding-right: 0.5rem;
 }
 
@@ -88,7 +105,8 @@
 }
 
 @media screen and (max-width: 1020px) {
-  .tweet-body {
+  .tweet-body,
+  .comment-body {
     max-width: 450px;
   }
 }
@@ -101,7 +119,8 @@
   .body {
     padding: 0 5%;
   }
-  .tweet-body {
+  .tweet-body,
+  .comment-body {
     max-width: 300px;
   }
 }
