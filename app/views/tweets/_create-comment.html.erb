@@ -11,12 +11,12 @@
     </div>
   <% end %>
 
-  <div>
+  <div class="tweet-form__container">
 
-    <%= form.text_area :body %>
+    <%= form.text_area :body, placeholder: "Remember to think before write...", class:"tweet-form" %>
   </div>
 
   <div>
-    <%= form.submit %>
+    <%= form.submit "Comment" , class:"comment-button" %>
   </div>
 <% end %>

@@ -95,13 +95,18 @@ p {
   padding-right: 0.5rem;
 }
 
-.tweet-button {
+.tweet-button,
+.comment-button {
   background-color: #1da1f2;
   border-radius: 100px;
   color: #fff;
   width: 76px;
   height: 40px;
   border: none;
+}
+
+.comment-button {
+  width: 103px;
 }
 
 @media screen and (max-width: 1020px) {
